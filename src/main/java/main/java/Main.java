@@ -20,7 +20,7 @@ public class Main {
                          BufferedReader in = new BufferedReader(new InputStreamReader(sockets.getInputStream()));
                          PrintWriter out = new PrintWriter(sockets.getOutputStream(), true)) {
                         out.println("Соединение установлено, порт" + " " + PORT + " Введите слово для поиска:");
-                        String word = in.readLine();
+                        String word = in.readLine().toLowerCase(); //Привел запрос к нижнему регистру.
                         List<PageEntry> searchResult = engine.search(word);
                         out.println(listToJson(searchResult));
                     }

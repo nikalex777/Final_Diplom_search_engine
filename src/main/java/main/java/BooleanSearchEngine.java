@@ -38,6 +38,7 @@ public class BooleanSearchEngine implements SearchEngine {
                         mapDataBase.put(word, new ArrayList<>());
                         mapDataBase.get(word).add(pageEntry);
                     }
+                    mapDataBase.values().forEach(Collections::sort); //Сортировка
                 }
             }
         }
@@ -45,9 +46,13 @@ public class BooleanSearchEngine implements SearchEngine {
 
     @Override
     public List<PageEntry> search(String word) {
-        List<PageEntry> result = mapDataBase.get(word);
-        Collections.sort(result);
-        return result;
+        // При отсутствии искомого слова возвращаем пустую коллекцию
+        List<PageEntry> result = mapDataBase.get(word.toLowerCase());
+        if (result != null) {
+            return new ArrayList<>(result);
+        } else {
+            return new ArrayList<>();
+        }
     }
 }
 

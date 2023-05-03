@@ -13,7 +13,7 @@ public class PageEntry implements Comparable<PageEntry> {
 
     @Override
     public int compareTo(PageEntry pageEntry) {
-        return this.count - pageEntry.count;
+        return pageEntry.count - this.count; //Выдача в порядке убывания count.
     }
 
     @Override
